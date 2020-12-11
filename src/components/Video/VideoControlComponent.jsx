@@ -1,3 +1,9 @@
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
+
+const auth = firebase.auth();
+
 const VideoControl = () => {
   return (
     <div className="main__controls">
@@ -32,7 +38,7 @@ const VideoControl = () => {
 
       <div className="main__controls_block">  
         <div className="main__controls_button">
-          <span className="leave_meeting">Leave Meeting</span>
+          <span className="leave_meeting" onClick={() => auth.signOut()}>Leave Meeting</span>
         </div>
       </div>
     </div>
