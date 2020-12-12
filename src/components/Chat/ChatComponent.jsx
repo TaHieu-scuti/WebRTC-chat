@@ -15,7 +15,7 @@ if (!firebase.apps.length) {
     measurementId: "G-D0PJ75YQDF"
   })
 }else {
-  firebase.app(); // if already initialized, use that one
+  firebase.app();
 }
 
 const auth = firebase.auth();
@@ -81,15 +81,16 @@ function ChatMessage(props) {
   const imageClass = uid === auth.currentUser.uid ? 'ml-2' : 'mr-2';
 
   return (
-    <div className={`px-3 py-2 flex no-wrap items-start ${messageClass}`}>
+    <div className={`message-chat ${messageClass}`}>
       <div>
-        <img className={`rounded-full object-cover w-10 ${imageClass}`} src={photoURL || 'https://i.imgur.com/rFbS5ms.png'} alt="{user}'s pfp" />
+        <img className={`image-chat ${imageClass}`} src={photoURL} alt="{user}'s photo" />
       </div>
-      <div className={`w-80 break-words p-2 rounded-md ${messageBodyClass}`}>
+      <div className={`body-chat ${messageBodyClass}`}>
         <p className="text">{user}</p>
         <p>{body}</p>
       </div>
     </div>
   )
 }
+
 export default ChatScreen

@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import MainLayout from './components/Layouts/MainLayout';
+import SignIn from './components/SignIn/SignInComponent';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
@@ -16,18 +17,6 @@ function App() {
       {user ? <MainLayout /> : <SignIn />}
     </div>
   );
-}
-
-function SignIn() {
-  const signInWithGoogle = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
-  }
-  return (
-    <div>
-      <button onClick={signInWithGoogle}>Sign In With Google</button>
-    </div>
-  )
 }
 
 export default App;
