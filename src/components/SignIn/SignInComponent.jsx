@@ -1,9 +1,6 @@
 import React from 'react';
 import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
-
-const auth = firebase.auth();
+import { auth } from '../../fb-config';
 
 const SignInComponent = () => {
     const signInWithGoogle = () => {

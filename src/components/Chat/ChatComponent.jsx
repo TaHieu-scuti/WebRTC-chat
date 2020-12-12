@@ -1,25 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { auth } from '../../fb-config';
 import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+import ChatMessage from "./ChatMessageComponent";
 
-if (!firebase.apps.length) {
-  firebase.initializeApp({
-    apiKey: "AIzaSyCFrAUChq13W2k_CF9yZXrlqxvF4TA414o",
-    authDomain: "scuti-chat.firebaseapp.com",
-    projectId: "scuti-chat",
-    storageBucket: "scuti-chat.appspot.com",
-    messagingSenderId: "449719856421",
-    appId: "1:449719856421:web:78c320922a18e26fb9fecc",
-    measurementId: "G-D0PJ75YQDF"
-  })
-}else {
-  firebase.app();
-}
-
-const auth = firebase.auth();
 const firestore = firebase.firestore();
+
 const ChatScreen = () => {
   const dummy = useRef();
   const messagesRef = firestore.collection('messages');
@@ -71,25 +57,6 @@ const ChatScreen = () => {
         </form>
       </div>
     </>
-  )
-}
-
-function ChatMessage(props) {
-  const { user, body, uid, photoURL, createdAt } = props.message;
-  const messageClass = uid === auth.currentUser.uid ? 'flex-row-reverse' : 'flex-row';
-  const messageBodyClass = uid === auth.currentUser.uid ? 'sent-message-bg text-right' : 'received-message-bg';
-  const imageClass = uid === auth.currentUser.uid ? 'ml-2' : 'mr-2';
-
-  return (
-    <div className={`message-chat ${messageClass}`}>
-      <div>
-        <img className={`image-chat ${imageClass}`} src={photoURL} alt="{user}'s photo" />
-      </div>
-      <div className={`body-chat ${messageBodyClass}`}>
-        <p className="text">{user}</p>
-        <p>{body}</p>
-      </div>
-    </div>
   )
 }
 
